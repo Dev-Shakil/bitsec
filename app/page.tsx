@@ -16,7 +16,6 @@ type User = {
 };
 
 export default async function Home() {
-  // Fetch data directly in the server component
   const res = await fetch("https://jsonplaceholder.typicode.com/users", {
     cache: "no-store", // always fetch fresh data
   });

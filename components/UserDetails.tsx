@@ -29,7 +29,6 @@ interface User {
   }
 }
 
-// Variants
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
@@ -40,7 +39,6 @@ const cardVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
 }
 
-// Helper component for 3D tilt card
 const TiltCard: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const cardRef = useRef<HTMLDivElement>(null)
   const x = useMotionValue(0)

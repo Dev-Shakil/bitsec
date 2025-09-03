@@ -1,22 +1,45 @@
 import UserDetails from "@/components/UserDetails"
 import { notFound } from "next/navigation"
 
-interface Params {
-  id: string
+// User type
+interface User {
+  id: number
+  name: string
+  email: string
+  username: string
+  phone: string
+  website: string
+  company: {
+    name: string
+    catchPhrase: string
+    bs: string
+  }
+  address: {
+    street: string
+    suite: string
+    city: string
+    zipcode: string
+    geo: {
+      lat: string
+      lng: string
+    }
+  }
 }
 
-interface PageProps {
-  params: Params
-}
+export default async function UserDetailsPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
 
-export default async function UserDetailsPage({ params }: PageProps) {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/users/${params.id}`, {
+  const res = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
     cache: "no-store",
   })
+
   if (!res.ok) notFound()
 
-  const user = await res.json()
+  const user: User = await res.json()
 
   return <UserDetails user={user} />
 }
+
+
+
 
